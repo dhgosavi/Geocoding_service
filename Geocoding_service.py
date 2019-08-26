@@ -37,7 +37,7 @@ def login():
         backup_url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?"
         #Enter developer app_id and app_code
         params["app_id"] = "<developer_api_id"
-        params["app_code"] = "developer_app_code"
+        params["app_code"] = "<developer_app_code>"
         params["mode"] = "retrieveAddresses"
         params["maxresults"] = 1
         params["prox"] = latlng 
