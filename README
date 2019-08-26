@@ -1,0 +1,19 @@
+Install pip by running get-pip.py
+Install flask by running pip install flask
+
+Set the environment for flask for Windows: set FLASK_APP=geocoding_service.py
+Set the environment for flask for MAC: $ export FLASK_APP=geocoding_service.py
+Restart flask by running: flask run
+
+Taking in url parameters as follows:
+http://127.0.0.1:5000/login?latlng=40.714224,-73.961452
+
+Primary_geocoding_service = https://developers.google.com/maps/documentation/geocoding/start
+Backup_geocoding_service = https://developer.here.com/documentation/geocoder/topics/quick-start-geocode.html
+
+CodeFLow:
+1.parse and validate latitude and longitude given by user.
+2.If invalid, return appropriate message
+3.If valid, try to fetch the address from primary_geocoding_service.
+4.If status_code from primary_geocoding_service is not "OK", try Backup_geocoding_service, else return Address
+5.Return status from backup_geocoding_service.
