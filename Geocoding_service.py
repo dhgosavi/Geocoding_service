@@ -1,3 +1,6 @@
+#Geocoding service
+#Given latitude, longitude will return address of the location
+
 import requests
 from flask import Flask
 from flask import request
@@ -27,12 +30,10 @@ def login():
     params["latlng"] =latlng
     response = requests.get(base_url, params=params).content
     result_resp =  json.loads(response)
-    print("Dhanashree")
-    print(result_resp["status"])
     res = "test"
     #if res == "test":
     if str(result_resp["status"]) != "OK":
-        #//try back up service
+        #try back up service
         print("Trying backup service")
         backup_url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?"
         params["app_id"] = "MHq4DFYodBax9j4i6YaM"
@@ -42,7 +43,6 @@ def login():
         params["prox"] = latlng 
         response = requests.get(base_url, params=params).content
         result_resp =  json.loads(response)
-        print(result_resp["status"])
         return result_resp
     else:
         return result_resp
