@@ -26,7 +26,8 @@ def login():
     
     base_url = "https://maps.googleapis.com/maps/api/geocode/json?"
     params = dict()
-    params["key"] = "AIzaSyA3FEDEVUKX--rhKHSjCmJ7DVF4vCHy7kU"
+    #Enter developer key
+    params["key"] = "<developerkey>"
     params["latlng"] =latlng
     response = requests.get(base_url, params=params).content
     result_resp =  json.loads(response)
@@ -34,8 +35,9 @@ def login():
         #try back up service
         print("Trying backup service")
         backup_url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?"
-        params["app_id"] = "MHq4DFYodBax9j4i6YaM"
-        params["app_code"] = "Tt572N76zdSAnU6ddU2vaw"
+        #Enter developer app_id and app_code
+        params["app_id"] = "<developer_api_id"
+        params["app_code"] = "developer_app_code"
         params["mode"] = "retrieveAddresses"
         params["maxresults"] = 1
         params["prox"] = latlng 
