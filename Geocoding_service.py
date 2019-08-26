@@ -5,7 +5,6 @@ from flask import Flask
 from flask import request
 from flask import abort
 import json
-from requests.models import Response
 import re
 
 app = Flask(__name__)
@@ -13,7 +12,7 @@ app = Flask(__name__)
 #http://127.0.0.1:5000/login?latlng=40.714224,-73.961452
 def google_service(latlng):
     params = dict()
-    params["key"] = "<developer_key"
+    params["key"] = "<developer_key>"
     params["latlng"] =latlng
     base_url = "https://maps.googleapis.com/maps/api/geocode/json?"
     response = requests.get(base_url, params=params)
@@ -50,7 +49,6 @@ def login():
     latlng = request.args.get('latlng')
     #Validate lat , lng entered by User
     lat, lng = str(latlng).split(",")
-    return_data = {"results":""}
     z = re.match("^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$", lat)
     if not z:
         badrequest()
