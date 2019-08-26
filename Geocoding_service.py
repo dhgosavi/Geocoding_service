@@ -15,23 +15,21 @@ def google_service(latlng):
     params = dict()
     params["key"] = "<developer_key"
     params["latlng"] =latlng
-    base_url = "https://maps.googleapis.com/maps/api/geocojson?"
+    base_url = "https://maps.googleapis.com/maps/api/geocode/json?"
     response = requests.get(base_url, params=params)
     if response.status_code == 200:
-        result_resp =  json.loads(response.content)
-        return result_resp 
+        return json.loads(response.content)
     else:
         return None
 
 def here_service(latlng):
-    print("Trying back up service")
     params = dict()
     params["app_id"] = "<developer_app_id>"
     params["app_code"] = "<developer_app_code>"
     params["mode"] = "retrieveAddresses"
     params["maxresults"] = 1
     params["prox"] = latlng 
-    base_url = "https://reverse.geocoder.api.here.com/6.2/reverseocode.json?"
+    base_url = "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?"
     response = requests.get(base_url, params=params)
     if response.status_code == 200:
         result_resp =  json.loads(response.content)
@@ -59,7 +57,7 @@ def login():
     z = re.match("^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$", lng)
     if not z:
         badrequest()
-    resources = ["https://maps.googleapis.com/maps/api/geoce/json?", "https://reverse.geocoder.api.here.com/6.2/reversegeoce.json?"]
+    resources = ["https://maps.googleapis.com/maps/api/geocode/json?", "https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?"]
     
     #Geocoding service dictionary mapping resource to api
     geoservice_dict = {}    
