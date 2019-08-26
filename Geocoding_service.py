@@ -30,8 +30,6 @@ def login():
     params["latlng"] =latlng
     response = requests.get(base_url, params=params).content
     result_resp =  json.loads(response)
-    res = "test"
-    #if res == "test":
     if str(result_resp["status"]) != "OK":
         #try back up service
         print("Trying backup service")
